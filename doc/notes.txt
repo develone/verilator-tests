@@ -1,0 +1,20 @@
+devel@pi4-30:~/virtual-python-xstools/verilator-tests/make_hello_c $ make
+-- Verilator hello-world simple example
+-- VERILATE & BUILD --------
+verilator -cc --exe --build -j top.v sim_main.cpp
+%Warning-WIDTHEXPAND: top.v:201:37: Operator ASSIGN expects 13 bits on the Assign RHS, but Assign RHS's VARREF 'col_s' generates 9 bits.
+                                  : ... note: In instance 'sdram_cntl'
+  201 |                             saddr_x = col_s;
+      |                                     ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.017
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: top.v:220:37: Operator ASSIGN expects 13 bits on the Assign RHS, but Assign RHS's VARREF 'col_s' generates 9 bits.
+                                  : ... note: In instance 'sdram_cntl'
+  220 |                             saddr_x = col_s;
+      |                                     ^
+%Warning-WIDTHTRUNC: top.v:318:17: Operator ASSIGN expects 16 bits on the Assign RHS, but Assign RHS's CONST '?32?bzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz' generates 32 bits.
+                                 : ... note: In instance 'sdram_cntl'
+  318 |         sdriver = 'bz;
+      |                 ^
+%Error: Exiting due to 3 warning(s)
+make: *** [Makefile:38: default] Error 1
