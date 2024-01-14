@@ -21,7 +21,10 @@ module top
    input [39:0]       in_quad,
    input [69:0]       in_wide
    );
-
+/* verilator lint_off UNUSEDSIGNAL */   
+wire [3:0] q;
+/* verilator lint_off UNUSEDSIGNAL */
+counter counter (.clk(clk), .q(q));
    // Connect up the outputs, using some trivial logic
    assign out_small = ~reset_l ? '0 : (in_small + 2'b1);
    assign out_quad  = ~reset_l ? '0 : (in_quad + 40'b1);
