@@ -25,9 +25,9 @@ module top
 wire [3:0] q;
 /* verilator lint_off UNUSEDSIGNAL */
 counter counter (.clk(clk), .q(q));
-/* verilator lint_off UNDRIVEN */
-reg host_intf_rst_i;
 
+reg host_intf_rst_i;
+/* verilator lint_off UNDRIVEN */
 wire host_intf_rd_i;
 wire host_intf_wr_i;
 wire [23:0] host_intf_addr_i;
@@ -67,10 +67,17 @@ sdram_cntl sdrami(
     sd_intf_dqmh,
     sd_intf_dq
 );
+
+myreset myreseti(
+    clk,
+    reset_l,
+    host_intf_rst_i
+);
    // Connect up the outputs, using some trivial logic
    assign out_small = ~reset_l ? '0 : (in_small + 2'b1);
    assign out_quad  = ~reset_l ? '0 : (in_quad + 40'b1);
    assign out_wide  = ~reset_l ? '0 : (in_wide + 70'b1);
+
 
    // And an example sub module. The submodule will print stuff.
    sub sub (/*AUTOINST*/

@@ -22,7 +22,7 @@ module sub
       end
       else begin
          count_c <= count_c + 1;
-         if (count_c >= 3) begin
+         if (count_c >= 1000000) begin
             // This write is a magic value the Makefile uses to make sure the
             // test completes successfully.
             $write("*-* All Finished *-*\n");
