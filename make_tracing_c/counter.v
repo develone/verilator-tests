@@ -2,7 +2,7 @@
 // 
 // This is a Verilog module which will be used as DUT in MyHDL-Verilog
 // co-simulation example
-
+`timescale 1ns/10ps
 module counter (
 	input clk,
 	output [3:0] q	
