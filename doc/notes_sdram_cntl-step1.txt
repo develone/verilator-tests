@@ -1,0 +1,352 @@
+01/15/24
+devel@pi4-30:~/virtual-python-xstools/verilator-tests/make_tracing_c $ gtkwave logs/vlt_dump.vcd
+
+devel@pi4-30:~/virtual-python-xstools/verilator-tests/make_tracing_c $ make clean
+rm -rf obj_dir logs *.log *.dmp *.vpd coverage.dat core
+devel@pi4-30:~/virtual-python-xstools/verilator-tests/make_tracing_c $ make
+
+-- Verilator tracing example
+
+-- VERILATE ----------------
+verilator -cc --exe -x-assign fast -Wall --trace --assert --coverage -f input.vc top.v sim_main.cpp
+
+-- BUILD -------------------
+make -j -C obj_dir -f ../Makefile_obj
+make[1]: Entering directory '/home/devel/virtual-python-xstools/verilator-tests/make_tracing_c/obj_dir'
+g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=1 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow       -MMD -MP -DVL_DEBUG=1 -Os -fstrict-aliasing -c -o sim_main.o ../sim_main.cpp
+g++ -Os  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=1 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow       -MMD -MP -DVL_DEBUG=1 -c -o verilated.o /usr/local/share/verilator/include/verilated.cpp
+g++ -Os  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=1 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow       -MMD -MP -DVL_DEBUG=1 -c -o verilated_cov.o /usr/local/share/verilator/include/verilated_cov.cpp
+g++ -Os  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=1 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow       -MMD -MP -DVL_DEBUG=1 -c -o verilated_vcd_c.o /usr/local/share/verilator/include/verilated_vcd_c.cpp
+g++ -Os  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=1 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow       -MMD -MP -DVL_DEBUG=1 -c -o verilated_threads.o /usr/local/share/verilator/include/verilated_threads.cpp
+/usr/bin/python3 /usr/local/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtop.cpp Vtop___024root__DepSet_h84412442__0.cpp Vtop___024root__DepSet_heccd7ead__0.cpp Vtop__Trace__0.cpp Vtop___024root__Slow.cpp Vtop___024root__DepSet_h84412442__0__Slow.cpp Vtop___024root__DepSet_heccd7ead__0__Slow.cpp Vtop__Syms.cpp Vtop__Trace__0__Slow.cpp > Vtop__ALL.cpp
+echo "" > Vtop__ALL.verilator_deplist.tmp
+g++ -Os -fstrict-aliasing  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=1 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow       -MMD -MP -DVL_DEBUG=1 -c -o Vtop__ALL.o Vtop__ALL.cpp
+Archive ar -rcs Vtop__ALL.a Vtop__ALL.o
+g++     sim_main.o verilated.o verilated_cov.o verilated_vcd_c.o verilated_threads.o Vtop__ALL.a    -pthread -lpthread -latomic   -o Vtop
+rm Vtop__ALL.verilator_deplist.tmp
+make[1]: Leaving directory '/home/devel/virtual-python-xstools/verilator-tests/make_tracing_c/obj_dir'
+
+-- RUN ---------------------
+obj_dir/Vtop +trace
+[0] Tracing to logs/vlt_dump.vcd...
+
+[0] Model running...
+
+[1] clk=1 rstl=1 iquad=1234 -> oquad=1235 owide=3_22222222_11111112
+[2] clk=0 rstl=0 iquad=1246 -> oquad=0 owide=0_00000000_00000000
+from counter module, t=    0, q= 0
+[3] clk=1 rstl=0 iquad=1246 -> oquad=0 owide=0_00000000_00000000
+[4] clk=0 rstl=0 iquad=1258 -> oquad=0 owide=0_00000000_00000000
+from counter module, t=    0, q= 1
+[5] clk=1 rstl=0 iquad=1258 -> oquad=0 owide=0_00000000_00000000
+[6] clk=0 rstl=0 iquad=126a -> oquad=0 owide=0_00000000_00000000
+from counter module, t=    0, q= 2
+[7] clk=1 rstl=0 iquad=126a -> oquad=0 owide=0_00000000_00000000
+[8] clk=0 rstl=0 iquad=127c -> oquad=0 owide=0_00000000_00000000
+from counter module, t=    0, q= 3
+[9] clk=1 rstl=0 iquad=127c -> oquad=0 owide=0_00000000_00000000
+[10] clk=0 rstl=1 iquad=128e -> oquad=128f owide=3_22222222_11111112
+from counter module, t=    0, q= 4
+[11] clk=1 rstl=1 iquad=128e -> oquad=128f owide=3_22222222_11111112
+[12] clk=0 rstl=1 iquad=12a0 -> oquad=12a1 owide=3_22222222_11111112
+from counter module, t=    0, q= 5
+[13] clk=1 rstl=1 iquad=12a0 -> oquad=12a1 owide=3_22222222_11111112
+[14] clk=0 rstl=1 iquad=12b2 -> oquad=12b3 owide=3_22222222_11111112
+from counter module, t=    0, q= 6
+[15] clk=1 rstl=1 iquad=12b2 -> oquad=12b3 owide=3_22222222_11111112
+[16] clk=0 rstl=1 iquad=12c4 -> oquad=12c5 owide=3_22222222_11111112
+from counter module, t=    0, q= 7
+[17] clk=1 rstl=1 iquad=12c4 -> oquad=12c5 owide=3_22222222_11111112
+[18] clk=0 rstl=1 iquad=12d6 -> oquad=12d7 owide=3_22222222_11111112
+from counter module, t=    0, q= 8
+[19] clk=1 rstl=1 iquad=12d6 -> oquad=12d7 owide=3_22222222_11111112
+[20] clk=0 rstl=1 iquad=12e8 -> oquad=12e9 owide=3_22222222_11111112
+from counter module, t=    0, q= 9
+[21] clk=1 rstl=1 iquad=12e8 -> oquad=12e9 owide=3_22222222_11111112
+[22] clk=0 rstl=1 iquad=12fa -> oquad=12fb owide=3_22222222_11111112
+from counter module, t=    0, q=10
+[23] clk=1 rstl=1 iquad=12fa -> oquad=12fb owide=3_22222222_11111112
+[24] clk=0 rstl=1 iquad=130c -> oquad=130d owide=3_22222222_11111112
+from counter module, t=    0, q=11
+[25] clk=1 rstl=1 iquad=130c -> oquad=130d owide=3_22222222_11111112
+[26] clk=0 rstl=1 iquad=131e -> oquad=131f owide=3_22222222_11111112
+from counter module, t=    0, q=12
+[27] clk=1 rstl=1 iquad=131e -> oquad=131f owide=3_22222222_11111112
+[28] clk=0 rstl=1 iquad=1330 -> oquad=1331 owide=3_22222222_11111112
+from counter module, t=    0, q=13
+[29] clk=1 rstl=1 iquad=1330 -> oquad=1331 owide=3_22222222_11111112
+[30] clk=0 rstl=1 iquad=1342 -> oquad=1343 owide=3_22222222_11111112
+from counter module, t=    0, q=14
+[31] clk=1 rstl=1 iquad=1342 -> oquad=1343 owide=3_22222222_11111112
+[32] clk=0 rstl=1 iquad=1354 -> oquad=1355 owide=3_22222222_11111112
+from counter module, t=    0, q=15
+[33] clk=1 rstl=1 iquad=1354 -> oquad=1355 owide=3_22222222_11111112
+[34] clk=0 rstl=1 iquad=1366 -> oquad=1367 owide=3_22222222_11111112
+from counter module, t=    0, q= 0
+[35] clk=1 rstl=1 iquad=1366 -> oquad=1367 owide=3_22222222_11111112
+[36] clk=0 rstl=1 iquad=1378 -> oquad=1379 owide=3_22222222_11111112
+from counter module, t=    0, q= 1
+[37] clk=1 rstl=1 iquad=1378 -> oquad=1379 owide=3_22222222_11111112
+[38] clk=0 rstl=1 iquad=138a -> oquad=138b owide=3_22222222_11111112
+from counter module, t=    0, q= 2
+[39] clk=1 rstl=1 iquad=138a -> oquad=138b owide=3_22222222_11111112
+[40] clk=0 rstl=1 iquad=139c -> oquad=139d owide=3_22222222_11111112
+from counter module, t=    0, q= 3
+[41] clk=1 rstl=1 iquad=139c -> oquad=139d owide=3_22222222_11111112
+[42] clk=0 rstl=1 iquad=13ae -> oquad=13af owide=3_22222222_11111112
+from counter module, t=    0, q= 4
+[43] clk=1 rstl=1 iquad=13ae -> oquad=13af owide=3_22222222_11111112
+[44] clk=0 rstl=1 iquad=13c0 -> oquad=13c1 owide=3_22222222_11111112
+from counter module, t=    0, q= 5
+[45] clk=1 rstl=1 iquad=13c0 -> oquad=13c1 owide=3_22222222_11111112
+[46] clk=0 rstl=1 iquad=13d2 -> oquad=13d3 owide=3_22222222_11111112
+from counter module, t=    0, q= 6
+[47] clk=1 rstl=1 iquad=13d2 -> oquad=13d3 owide=3_22222222_11111112
+[48] clk=0 rstl=1 iquad=13e4 -> oquad=13e5 owide=3_22222222_11111112
+from counter module, t=    0, q= 7
+[49] clk=1 rstl=1 iquad=13e4 -> oquad=13e5 owide=3_22222222_11111112
+[50] clk=0 rstl=1 iquad=13f6 -> oquad=13f7 owide=3_22222222_11111112
+from counter module, t=    0, q= 8
+[51] clk=1 rstl=1 iquad=13f6 -> oquad=13f7 owide=3_22222222_11111112
+[52] clk=0 rstl=1 iquad=1408 -> oquad=1409 owide=3_22222222_11111112
+from counter module, t=    0, q= 9
+[53] clk=1 rstl=1 iquad=1408 -> oquad=1409 owide=3_22222222_11111112
+[54] clk=0 rstl=1 iquad=141a -> oquad=141b owide=3_22222222_11111112
+from counter module, t=    0, q=10
+[55] clk=1 rstl=1 iquad=141a -> oquad=141b owide=3_22222222_11111112
+[56] clk=0 rstl=1 iquad=142c -> oquad=142d owide=3_22222222_11111112
+from counter module, t=    0, q=11
+[57] clk=1 rstl=1 iquad=142c -> oquad=142d owide=3_22222222_11111112
+[58] clk=0 rstl=1 iquad=143e -> oquad=143f owide=3_22222222_11111112
+from counter module, t=    0, q=12
+[59] clk=1 rstl=1 iquad=143e -> oquad=143f owide=3_22222222_11111112
+[60] clk=0 rstl=1 iquad=1450 -> oquad=1451 owide=3_22222222_11111112
+from counter module, t=    0, q=13
+[61] clk=1 rstl=1 iquad=1450 -> oquad=1451 owide=3_22222222_11111112
+[62] clk=0 rstl=1 iquad=1462 -> oquad=1463 owide=3_22222222_11111112
+from counter module, t=    0, q=14
+[63] clk=1 rstl=1 iquad=1462 -> oquad=1463 owide=3_22222222_11111112
+[64] clk=0 rstl=1 iquad=1474 -> oquad=1475 owide=3_22222222_11111112
+from counter module, t=    0, q=15
+[65] clk=1 rstl=1 iquad=1474 -> oquad=1475 owide=3_22222222_11111112
+[66] clk=0 rstl=1 iquad=1486 -> oquad=1487 owide=3_22222222_11111112
+from counter module, t=    0, q= 0
+[67] clk=1 rstl=1 iquad=1486 -> oquad=1487 owide=3_22222222_11111112
+[68] clk=0 rstl=1 iquad=1498 -> oquad=1499 owide=3_22222222_11111112
+from counter module, t=    0, q= 1
+[69] clk=1 rstl=1 iquad=1498 -> oquad=1499 owide=3_22222222_11111112
+[70] clk=0 rstl=1 iquad=14aa -> oquad=14ab owide=3_22222222_11111112
+from counter module, t=    0, q= 2
+[71] clk=1 rstl=1 iquad=14aa -> oquad=14ab owide=3_22222222_11111112
+[72] clk=0 rstl=1 iquad=14bc -> oquad=14bd owide=3_22222222_11111112
+from counter module, t=    0, q= 3
+[73] clk=1 rstl=1 iquad=14bc -> oquad=14bd owide=3_22222222_11111112
+[74] clk=0 rstl=1 iquad=14ce -> oquad=14cf owide=3_22222222_11111112
+from counter module, t=    0, q= 4
+[75] clk=1 rstl=1 iquad=14ce -> oquad=14cf owide=3_22222222_11111112
+[76] clk=0 rstl=1 iquad=14e0 -> oquad=14e1 owide=3_22222222_11111112
+from counter module, t=    0, q= 5
+[77] clk=1 rstl=1 iquad=14e0 -> oquad=14e1 owide=3_22222222_11111112
+[78] clk=0 rstl=1 iquad=14f2 -> oquad=14f3 owide=3_22222222_11111112
+from counter module, t=    0, q= 6
+[79] clk=1 rstl=1 iquad=14f2 -> oquad=14f3 owide=3_22222222_11111112
+[80] clk=0 rstl=1 iquad=1504 -> oquad=1505 owide=3_22222222_11111112
+from counter module, t=    0, q= 7
+[81] clk=1 rstl=1 iquad=1504 -> oquad=1505 owide=3_22222222_11111112
+[82] clk=0 rstl=1 iquad=1516 -> oquad=1517 owide=3_22222222_11111112
+from counter module, t=    0, q= 8
+[83] clk=1 rstl=1 iquad=1516 -> oquad=1517 owide=3_22222222_11111112
+[84] clk=0 rstl=1 iquad=1528 -> oquad=1529 owide=3_22222222_11111112
+from counter module, t=    0, q= 9
+[85] clk=1 rstl=1 iquad=1528 -> oquad=1529 owide=3_22222222_11111112
+[86] clk=0 rstl=1 iquad=153a -> oquad=153b owide=3_22222222_11111112
+from counter module, t=    0, q=10
+[87] clk=1 rstl=1 iquad=153a -> oquad=153b owide=3_22222222_11111112
+[88] clk=0 rstl=1 iquad=154c -> oquad=154d owide=3_22222222_11111112
+from counter module, t=    0, q=11
+[89] clk=1 rstl=1 iquad=154c -> oquad=154d owide=3_22222222_11111112
+[90] clk=0 rstl=1 iquad=155e -> oquad=155f owide=3_22222222_11111112
+from counter module, t=    0, q=12
+[91] clk=1 rstl=1 iquad=155e -> oquad=155f owide=3_22222222_11111112
+[92] clk=0 rstl=1 iquad=1570 -> oquad=1571 owide=3_22222222_11111112
+from counter module, t=    0, q=13
+[93] clk=1 rstl=1 iquad=1570 -> oquad=1571 owide=3_22222222_11111112
+[94] clk=0 rstl=1 iquad=1582 -> oquad=1583 owide=3_22222222_11111112
+from counter module, t=    0, q=14
+[95] clk=1 rstl=1 iquad=1582 -> oquad=1583 owide=3_22222222_11111112
+[96] clk=0 rstl=1 iquad=1594 -> oquad=1595 owide=3_22222222_11111112
+from counter module, t=    0, q=15
+[97] clk=1 rstl=1 iquad=1594 -> oquad=1595 owide=3_22222222_11111112
+[98] clk=0 rstl=1 iquad=15a6 -> oquad=15a7 owide=3_22222222_11111112
+from counter module, t=    0, q= 0
+[99] clk=1 rstl=1 iquad=15a6 -> oquad=15a7 owide=3_22222222_11111112
+[100] clk=0 rstl=1 iquad=15b8 -> oquad=15b9 owide=3_22222222_11111112
+from counter module, t=    1, q= 1
+[101] clk=1 rstl=1 iquad=15b8 -> oquad=15b9 owide=3_22222222_11111112
+[102] clk=0 rstl=1 iquad=15ca -> oquad=15cb owide=3_22222222_11111112
+from counter module, t=    1, q= 2
+[103] clk=1 rstl=1 iquad=15ca -> oquad=15cb owide=3_22222222_11111112
+[104] clk=0 rstl=1 iquad=15dc -> oquad=15dd owide=3_22222222_11111112
+from counter module, t=    1, q= 3
+[105] clk=1 rstl=1 iquad=15dc -> oquad=15dd owide=3_22222222_11111112
+[106] clk=0 rstl=1 iquad=15ee -> oquad=15ef owide=3_22222222_11111112
+from counter module, t=    1, q= 4
+[107] clk=1 rstl=1 iquad=15ee -> oquad=15ef owide=3_22222222_11111112
+[108] clk=0 rstl=1 iquad=1600 -> oquad=1601 owide=3_22222222_11111112
+from counter module, t=    1, q= 5
+[109] clk=1 rstl=1 iquad=1600 -> oquad=1601 owide=3_22222222_11111112
+[110] clk=0 rstl=1 iquad=1612 -> oquad=1613 owide=3_22222222_11111112
+from counter module, t=    1, q= 6
+[111] clk=1 rstl=1 iquad=1612 -> oquad=1613 owide=3_22222222_11111112
+[112] clk=0 rstl=1 iquad=1624 -> oquad=1625 owide=3_22222222_11111112
+from counter module, t=    1, q= 7
+[113] clk=1 rstl=1 iquad=1624 -> oquad=1625 owide=3_22222222_11111112
+[114] clk=0 rstl=1 iquad=1636 -> oquad=1637 owide=3_22222222_11111112
+from counter module, t=    1, q= 8
+[115] clk=1 rstl=1 iquad=1636 -> oquad=1637 owide=3_22222222_11111112
+[116] clk=0 rstl=1 iquad=1648 -> oquad=1649 owide=3_22222222_11111112
+from counter module, t=    1, q= 9
+[117] clk=1 rstl=1 iquad=1648 -> oquad=1649 owide=3_22222222_11111112
+[118] clk=0 rstl=1 iquad=165a -> oquad=165b owide=3_22222222_11111112
+from counter module, t=    1, q=10
+[119] clk=1 rstl=1 iquad=165a -> oquad=165b owide=3_22222222_11111112
+[120] clk=0 rstl=1 iquad=166c -> oquad=166d owide=3_22222222_11111112
+from counter module, t=    1, q=11
+[121] clk=1 rstl=1 iquad=166c -> oquad=166d owide=3_22222222_11111112
+[122] clk=0 rstl=1 iquad=167e -> oquad=167f owide=3_22222222_11111112
+from counter module, t=    1, q=12
+[123] clk=1 rstl=1 iquad=167e -> oquad=167f owide=3_22222222_11111112
+[124] clk=0 rstl=1 iquad=1690 -> oquad=1691 owide=3_22222222_11111112
+from counter module, t=    1, q=13
+[125] clk=1 rstl=1 iquad=1690 -> oquad=1691 owide=3_22222222_11111112
+[126] clk=0 rstl=1 iquad=16a2 -> oquad=16a3 owide=3_22222222_11111112
+from counter module, t=    1, q=14
+[127] clk=1 rstl=1 iquad=16a2 -> oquad=16a3 owide=3_22222222_11111112
+[128] clk=0 rstl=1 iquad=16b4 -> oquad=16b5 owide=3_22222222_11111112
+from counter module, t=    1, q=15
+[129] clk=1 rstl=1 iquad=16b4 -> oquad=16b5 owide=3_22222222_11111112
+[130] clk=0 rstl=1 iquad=16c6 -> oquad=16c7 owide=3_22222222_11111112
+from counter module, t=    1, q= 0
+[131] clk=1 rstl=1 iquad=16c6 -> oquad=16c7 owide=3_22222222_11111112
+[132] clk=0 rstl=1 iquad=16d8 -> oquad=16d9 owide=3_22222222_11111112
+from counter module, t=    1, q= 1
+[133] clk=1 rstl=1 iquad=16d8 -> oquad=16d9 owide=3_22222222_11111112
+[134] clk=0 rstl=1 iquad=16ea -> oquad=16eb owide=3_22222222_11111112
+from counter module, t=    1, q= 2
+[135] clk=1 rstl=1 iquad=16ea -> oquad=16eb owide=3_22222222_11111112
+[136] clk=0 rstl=1 iquad=16fc -> oquad=16fd owide=3_22222222_11111112
+from counter module, t=    1, q= 3
+[137] clk=1 rstl=1 iquad=16fc -> oquad=16fd owide=3_22222222_11111112
+[138] clk=0 rstl=1 iquad=170e -> oquad=170f owide=3_22222222_11111112
+from counter module, t=    1, q= 4
+[139] clk=1 rstl=1 iquad=170e -> oquad=170f owide=3_22222222_11111112
+[140] clk=0 rstl=1 iquad=1720 -> oquad=1721 owide=3_22222222_11111112
+from counter module, t=    1, q= 5
+[141] clk=1 rstl=1 iquad=1720 -> oquad=1721 owide=3_22222222_11111112
+[142] clk=0 rstl=1 iquad=1732 -> oquad=1733 owide=3_22222222_11111112
+from counter module, t=    1, q= 6
+[143] clk=1 rstl=1 iquad=1732 -> oquad=1733 owide=3_22222222_11111112
+[144] clk=0 rstl=1 iquad=1744 -> oquad=1745 owide=3_22222222_11111112
+from counter module, t=    1, q= 7
+[145] clk=1 rstl=1 iquad=1744 -> oquad=1745 owide=3_22222222_11111112
+[146] clk=0 rstl=1 iquad=1756 -> oquad=1757 owide=3_22222222_11111112
+from counter module, t=    1, q= 8
+[147] clk=1 rstl=1 iquad=1756 -> oquad=1757 owide=3_22222222_11111112
+[148] clk=0 rstl=1 iquad=1768 -> oquad=1769 owide=3_22222222_11111112
+from counter module, t=    1, q= 9
+[149] clk=1 rstl=1 iquad=1768 -> oquad=1769 owide=3_22222222_11111112
+[150] clk=0 rstl=1 iquad=177a -> oquad=177b owide=3_22222222_11111112
+from counter module, t=    1, q=10
+[151] clk=1 rstl=1 iquad=177a -> oquad=177b owide=3_22222222_11111112
+[152] clk=0 rstl=1 iquad=178c -> oquad=178d owide=3_22222222_11111112
+from counter module, t=    1, q=11
+[153] clk=1 rstl=1 iquad=178c -> oquad=178d owide=3_22222222_11111112
+[154] clk=0 rstl=1 iquad=179e -> oquad=179f owide=3_22222222_11111112
+from counter module, t=    1, q=12
+[155] clk=1 rstl=1 iquad=179e -> oquad=179f owide=3_22222222_11111112
+[156] clk=0 rstl=1 iquad=17b0 -> oquad=17b1 owide=3_22222222_11111112
+from counter module, t=    1, q=13
+[157] clk=1 rstl=1 iquad=17b0 -> oquad=17b1 owide=3_22222222_11111112
+[158] clk=0 rstl=1 iquad=17c2 -> oquad=17c3 owide=3_22222222_11111112
+from counter module, t=    1, q=14
+[159] clk=1 rstl=1 iquad=17c2 -> oquad=17c3 owide=3_22222222_11111112
+[160] clk=0 rstl=1 iquad=17d4 -> oquad=17d5 owide=3_22222222_11111112
+from counter module, t=    1, q=15
+[161] clk=1 rstl=1 iquad=17d4 -> oquad=17d5 owide=3_22222222_11111112
+[162] clk=0 rstl=1 iquad=17e6 -> oquad=17e7 owide=3_22222222_11111112
+from counter module, t=    1, q= 0
+[163] clk=1 rstl=1 iquad=17e6 -> oquad=17e7 owide=3_22222222_11111112
+[164] clk=0 rstl=1 iquad=17f8 -> oquad=17f9 owide=3_22222222_11111112
+from counter module, t=    1, q= 1
+[165] clk=1 rstl=1 iquad=17f8 -> oquad=17f9 owide=3_22222222_11111112
+[166] clk=0 rstl=1 iquad=180a -> oquad=180b owide=3_22222222_11111112
+from counter module, t=    1, q= 2
+[167] clk=1 rstl=1 iquad=180a -> oquad=180b owide=3_22222222_11111112
+[168] clk=0 rstl=1 iquad=181c -> oquad=181d owide=3_22222222_11111112
+from counter module, t=    1, q= 3
+[169] clk=1 rstl=1 iquad=181c -> oquad=181d owide=3_22222222_11111112
+[170] clk=0 rstl=1 iquad=182e -> oquad=182f owide=3_22222222_11111112
+from counter module, t=    1, q= 4
+[171] clk=1 rstl=1 iquad=182e -> oquad=182f owide=3_22222222_11111112
+[172] clk=0 rstl=1 iquad=1840 -> oquad=1841 owide=3_22222222_11111112
+from counter module, t=    1, q= 5
+[173] clk=1 rstl=1 iquad=1840 -> oquad=1841 owide=3_22222222_11111112
+[174] clk=0 rstl=1 iquad=1852 -> oquad=1853 owide=3_22222222_11111112
+from counter module, t=    1, q= 6
+[175] clk=1 rstl=1 iquad=1852 -> oquad=1853 owide=3_22222222_11111112
+[176] clk=0 rstl=1 iquad=1864 -> oquad=1865 owide=3_22222222_11111112
+from counter module, t=    1, q= 7
+[177] clk=1 rstl=1 iquad=1864 -> oquad=1865 owide=3_22222222_11111112
+[178] clk=0 rstl=1 iquad=1876 -> oquad=1877 owide=3_22222222_11111112
+from counter module, t=    1, q= 8
+[179] clk=1 rstl=1 iquad=1876 -> oquad=1877 owide=3_22222222_11111112
+[180] clk=0 rstl=1 iquad=1888 -> oquad=1889 owide=3_22222222_11111112
+from counter module, t=    1, q= 9
+[181] clk=1 rstl=1 iquad=1888 -> oquad=1889 owide=3_22222222_11111112
+[182] clk=0 rstl=1 iquad=189a -> oquad=189b owide=3_22222222_11111112
+from counter module, t=    1, q=10
+[183] clk=1 rstl=1 iquad=189a -> oquad=189b owide=3_22222222_11111112
+[184] clk=0 rstl=1 iquad=18ac -> oquad=18ad owide=3_22222222_11111112
+from counter module, t=    1, q=11
+[185] clk=1 rstl=1 iquad=18ac -> oquad=18ad owide=3_22222222_11111112
+[186] clk=0 rstl=1 iquad=18be -> oquad=18bf owide=3_22222222_11111112
+from counter module, t=    1, q=12
+[187] clk=1 rstl=1 iquad=18be -> oquad=18bf owide=3_22222222_11111112
+[188] clk=0 rstl=1 iquad=18d0 -> oquad=18d1 owide=3_22222222_11111112
+from counter module, t=    1, q=13
+[189] clk=1 rstl=1 iquad=18d0 -> oquad=18d1 owide=3_22222222_11111112
+[190] clk=0 rstl=1 iquad=18e2 -> oquad=18e3 owide=3_22222222_11111112
+from counter module, t=    1, q=14
+[191] clk=1 rstl=1 iquad=18e2 -> oquad=18e3 owide=3_22222222_11111112
+[192] clk=0 rstl=1 iquad=18f4 -> oquad=18f5 owide=3_22222222_11111112
+from counter module, t=    1, q=15
+[193] clk=1 rstl=1 iquad=18f4 -> oquad=18f5 owide=3_22222222_11111112
+[194] clk=0 rstl=1 iquad=1906 -> oquad=1907 owide=3_22222222_11111112
+from counter module, t=    1, q= 0
+[195] clk=1 rstl=1 iquad=1906 -> oquad=1907 owide=3_22222222_11111112
+[196] clk=0 rstl=1 iquad=1918 -> oquad=1919 owide=3_22222222_11111112
+from counter module, t=    1, q= 1
+[197] clk=1 rstl=1 iquad=1918 -> oquad=1919 owide=3_22222222_11111112
+[198] clk=0 rstl=1 iquad=192a -> oquad=192b owide=3_22222222_11111112
+from counter module, t=    1, q= 2
+[199] clk=1 rstl=1 iquad=192a -> oquad=192b owide=3_22222222_11111112
+[200] clk=0 rstl=1 iquad=193c -> oquad=193d owide=3_22222222_11111112
+from counter module, t=    2, q= 3
+[201] clk=1 rstl=1 iquad=193c -> oquad=193d owide=3_22222222_11111112
+[202] clk=0 rstl=1 iquad=194e -> oquad=194f owide=3_22222222_11111112
+from counter module, t=    2, q= 4
+[203] clk=1 rstl=1 iquad=194e -> oquad=194f owide=3_22222222_11111112
+[204] clk=0 rstl=1 iquad=1960 -> oquad=1961 owide=3_22222222_11111112
+from counter module, t=    2, q= 5
+[205] clk=1 rstl=1 iquad=1960 -> oquad=1961 owide=3_22222222_11111112
+[206] clk=0 rstl=1 iquad=1972 -> oquad=1973 owide=3_22222222_11111112
+from counter module, t=    2, q= 6
+[207] clk=1 rstl=1 iquad=1972 -> oquad=1973 owide=3_22222222_11111112
+[208] clk=0 rstl=1 iquad=1984 -> oquad=1985 owide=3_22222222_11111112
+from counter module, t=    2, q= 7
+[209] clk=1 rstl=1 iquad=1984 -> oquad=1985 owide=3_22222222_11111112
+[210] clk=0 rstl=1 iquad=1996 -> oquad=1997 owide=3_22222222_11111112
+[200] %Error: sub.v:36: Assertion failed in TOP.top.sub.AssertionExample: 'assert' failed.
+%Error: sub.v:36: Verilog $stop
+Aborting...
+make: *** [Makefile:72: run] Aborted
