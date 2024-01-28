@@ -19,7 +19,13 @@ module top
    output wire [69:0] out_wide,
    input [1:0]        in_small,
    input [39:0]       in_quad,
-   input [69:0]       in_wide
+   input [69:0]       in_wide,
+	input [15:0] l_s,
+	input [15:0] r_s,
+	input [15:0] s_s,
+	input ex,
+	input lohipass,
+	input fwd_inv
    );
 /* verilator lint_off UNUSEDSIGNAL */   
 wire [3:0] q;
@@ -68,6 +74,18 @@ sdram_cntl sdrami(
     sd_intf_dq
 );
 
+wire [15:0] res_s;
+
+jpeg jpeg0 (
+    clk,
+    l_s,
+    r_s,
+    s_s,
+    res_s,
+    lohipass,
+    fwd_inv,
+    ex
+);
 myreset myreseti(
     clk,
     reset_l,

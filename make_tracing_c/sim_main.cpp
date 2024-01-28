@@ -65,7 +65,12 @@ int main(int argc, char** argv) {
     top->in_wide[0] = 0x11111111;
     top->in_wide[1] = 0x22222222;
     top->in_wide[2] = 0x3;
-
+	top->l_s = 215;
+	top->s_s = 216;
+	top->r_s = 217;
+	top-> ex = 1;
+	top->lohipass = 1;
+	top->fwd_inv = 1;
     // Simulate until $finish
     while (!contextp->gotFinish()) {
         // Historical note, before Verilator 4.200 Verilated::gotFinish()
