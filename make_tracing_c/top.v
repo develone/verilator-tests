@@ -25,7 +25,12 @@ module top
 	input [15:0] s_s,
 	input ex,
 	input lohipass,
-	input fwd_inv
+	input fwd_inv,
+	output host_intf_done_o,
+	input [23:0] host_intf_addr_i,
+	input [15:0] host_intf_data_i,
+	input host_intf_wr_i
+
    );
 /* verilator lint_off UNUSEDSIGNAL */   
 wire [3:0] q;
@@ -35,11 +40,11 @@ counter counter (.clk(clk), .q(q));
 reg host_intf_rst_i;
 /* verilator lint_off UNDRIVEN */
 wire host_intf_rd_i;
-wire host_intf_wr_i;
-wire [23:0] host_intf_addr_i;
-wire [15:0] host_intf_data_i;
+//wire host_intf_wr_i;
+//wire [23:0] host_intf_addr_i;
+//wire [15:0] host_intf_data_i;
 wire [15:0] host_intf_data_o;
-wire host_intf_done_o;
+//wire host_intf_done_o;
 wire host_intf_rdPending_o;
 wire sd_intf_cke;
 wire sd_intf_cs;

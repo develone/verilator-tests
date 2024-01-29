@@ -98,6 +98,12 @@ int main(int argc, char** argv) {
                 top->reset_l = !1;  // Assert reset
             } else {
                 top->reset_l = !0;  // Deassert reset
+			if (contextp->time() > 1 && contextp->time() < 64000000) {
+				top->host_intf_addr_i=0x02000;
+				top->host_intf_data_i=0xffff;
+				top->host_intf_wr_i = 1;
+			}
+
             }
             // Assign some other inputs
             top->in_quad += 0x12;
