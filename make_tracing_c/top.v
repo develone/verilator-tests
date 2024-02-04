@@ -78,6 +78,29 @@ sdram_cntl sdrami(
     sd_intf_dqmh,
     sd_intf_dq
 );
+wire [11:0] addrrom;
+wire [15:0] dout;
+
+rom dutrom(
+    dout,
+    addrrom
+);
+wire [11:0] addrrom_size;
+wire [23:0] addr;
+wire [15:0] data;
+wire wr;
+
+inc_rom_size dutincsize(
+    addrrom_size,
+    clk,
+    host_intf_rst_i,
+    addr,
+    dout,
+    data,
+    wr,
+    host_intf_done_o,
+    addrrom
+);
 
 wire [15:0] res_s;
 
