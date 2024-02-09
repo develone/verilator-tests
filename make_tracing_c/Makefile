@@ -44,7 +44,8 @@ VERILATOR_FLAGS += --trace
 # Check SystemVerilog assertions
 VERILATOR_FLAGS += --assert
 # Generate coverage analysis
-#VERILATOR_FLAGS += --coverage
+VERILATOR_FLAGS += --coverage
+VERILATOR_FLAGS += --stats
 # Run Verilator in debug mode
 #VERILATOR_FLAGS += --debug
 # Add this trace to get a backtrace in gdb
